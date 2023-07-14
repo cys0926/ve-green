@@ -4,7 +4,8 @@ import React from 'react';
 import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
-import TomatoImage from '$/images/plant/cherry_tomato.png';
+import TomatoImage from '$/images/plant/tomato.png';
+import { PencilIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
 
 const name = '토망이';
 
@@ -21,7 +22,16 @@ function Page({ params }: { params: { id: string } }) {
         }}
         className="animate-gomugomu"
       />
-      <ul className="flex w-full flex-col-reverse gap-y-8 px-4 py-8">
+      <div className="flex w-full flex-col-reverse px-4 py-8">
+        <Link
+          className="flex w-full items-baseline  gap-x-3 border-b pb-1 text-gray-500"
+          href="/diary/1/write"
+        >
+          <PencilSquareIcon className="h-6 w-12 self-center justify-self-center" />
+          <div className="flex-1 text-xl font-semibold">{name} 일기 쓰기</div>
+        </Link>
+      </div>
+      <ul className="flex w-full flex-col-reverse gap-y-8 px-4">
         {Array(20)
           .fill(0)
           .map((value, index) => {

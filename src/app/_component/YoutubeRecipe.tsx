@@ -46,12 +46,13 @@ function YoutubeRecipe() {
                 alt="레시피"
                 style={{
                   width: '100%',
+                  height: '100%',
                   objectFit: 'cover',
                 }}
                 className="hover:scale-105"
               />
             </a>
-            <h3 className="font-semibold">{value.name}</h3>
+            <h3 className="truncate font-semibold">{value.name}</h3>
             <span className="text-xs text-gray-400 ">{value.userName}</span>
           </li>
         ))}

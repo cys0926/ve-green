@@ -28,7 +28,6 @@ function Page() {
         username,
         password,
       });
-      alert(`${username}님, 회원가입을 축하합니다!`);
       setUser({ username: user.username });
       router.push('/');
     } catch (err) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import TomatoImage from '$/images/plant/cherry_tomato.png';
+import TomatoImage from '$/images/plant/tomato.png';
 import moment from 'moment';
 
 const name = '토망이';

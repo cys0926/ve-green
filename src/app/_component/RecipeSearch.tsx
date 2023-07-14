@@ -1,5 +1,7 @@
 'use client';
 
+/* eslint-disable react/jsx-props-no-spreading */
+
 import React, { useState } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
@@ -50,15 +52,18 @@ function RecipeSearch() {
         </div>
       </form>
       <AIRecipe data={recipe.openAi} />
-      <article className="grid grid-cols-2 grid-rows-2 gap-x-4 gap-y-4">
-        {Array(10)
-          .fill(0)
-          .map(() => (
-            <div key={Math.random()} className="flex flex-col gap-y-1">
-              <Image src={TempImage} alt="레시피 이미지 미리보기" />
-              <h3>사과 새우 북엇국</h3>
-            </div>
-          ))}
+      <article className="flex flex-col gap-y-3 border p-4">
+        <h3 className="text-lg font-semibold">레시피 검색 결과</h3>
+        <div className="grid grid-cols-2 grid-rows-2 gap-x-6 gap-y-6">
+          {Array(10)
+            .fill(0)
+            .map(() => (
+              <div key={Math.random()} className="flex flex-col gap-y-1">
+                <Image src={TempImage} alt="레시피 이미지 미리보기" />
+                <h3>사과 새우 북엇국</h3>
+              </div>
+            ))}
+        </div>
       </article>
     </section>
   );
