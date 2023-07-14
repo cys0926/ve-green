@@ -4,52 +4,67 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
-
-type Inputs = {
-  userName: string;
-  password: string;
-};
+import { LoginRequest } from '@/lib/types/api';
+import useAuthStore from '@/store/authStore';
+import { useRouter } from 'next/navigation';
 
 function Page() {
+  const login = useAuthStore((state) => state.login);
+  const setUser = useAuthStore((state) => state.setUser);
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
-  } = useForm<Inputs>();
+  } = useForm<LoginRequest>();
+
+  const onSignIn = handleSubmit(async (data) => {
+    const { username, password } = data;
+
+    try {
+      const user = await login({
+        username,
+        password,
+      });
+      alert(`${username}님, 회원가입을 축하합니다!`);
+      setUser({ username: user.username });
+      router.push('/');
+    } catch (err) {
+      if (err instanceof Error) {
+        setError('root', { message: err.message });
+      }
+    }
+  });
 
   return (
-    <form className="flex w-full flex-col items-center gap-y-4">
+    <form
+      onSubmit={onSignIn}
+      className="flex flex-col items-center gap-y-6 px-6 py-12"
+    >
       <h2 className="py-4 text-4xl font-bold">로그인</h2>
       <div className="flex w-full flex-col gap-y-1">
         <input
+          placeholder="아이디"
           className="w-full border p-4"
-          type="text"
-          {...register('userName', {
-            required: { value: true, message: '이메일을 입력해주세요.' },
-            validate: (value) => {
-              return true;
-            },
+          {...register('username', {
+            required: { value: true, message: '아이디를 입력해주세요.' },
           })}
         />
-        {errors.userName && (
+        {errors.username && (
           <span className="px-4 text-warning-500">
-            {errors.userName.message}
+            {errors.username.message}
           </span>
         )}
       </div>
       <div className="w-full">
         <input
+          placeholder="비밀번호"
           className="w-full border p-4"
           type="password"
           {...register('password', {
             required: { value: true, message: '비밀번호를 입력해주세요.' },
-            validate: (value) => {
-              if (value.length < 6) {
-                return '비밀번호는 6자 이상이어야 합니다.';
-              }
-              return true;
-            },
           })}
         />
         {errors.password && (
@@ -59,7 +74,10 @@ function Page() {
         )}
       </div>
       <div className="w-full">
-        <input type="submit" />
+        <input
+          type="submit"
+          className="w-full border bg-primary-500 p-4 text-white shadow"
+        />
         {errors.root && (
           <span className="px-4 text-warning-500">{errors.root.message}</span>
         )}

@@ -9,26 +9,21 @@ const postSignUp = async ({
 }: SignupRequest): Promise<User> => {
   const response = await fetch(`${API_BASE_URL}/signup`, {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
     body: JSON.stringify({
       username,
       password,
       confirmPassword,
     }),
     credentials: 'include',
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      //samsite non
-      // 'Set-Cookie': 'HttpOnly; SameSite=None; Secure',
-    },
-    // cors 해제
     mode: 'no-cors',
   });
 
   if (!response.ok) {
     throw new Error('회원가입에 실패했습니다.');
   }
-
-  console.log(response);
 
   return { username };
 };
