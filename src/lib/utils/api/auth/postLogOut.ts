@@ -1,7 +1,7 @@
 import API_BASE_URL from '@/lib/constants/api';
 import { AuthResponseType } from '@/lib/types/api';
 
-const postLogOut = async () => {
+const postLogOut = async (): Promise<AuthResponseType> => {
   const response = await fetch(`${API_BASE_URL}/logout`, {
     method: 'POST',
   });

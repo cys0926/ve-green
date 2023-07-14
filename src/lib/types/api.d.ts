@@ -12,7 +12,3 @@ export type LoginRequest = {
 export type AuthResponseType = {
   msg: 'success';
 };
-
-export type ProfileTypeResponse = {
-  username: string;
-};

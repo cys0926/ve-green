@@ -1,7 +1,7 @@
 import API_BASE_URL from '@/lib/constants/api';
 
 import { User } from '@/lib/types';
-import { AuthResponseType, LoginRequest } from '@/lib/types/api';
+import { LoginRequest } from '@/lib/types/api';
 
 const postLogIn = async ({
   username,
@@ -15,11 +15,8 @@ const postLogIn = async ({
     }),
   });
 
-  const responseData: AuthResponseType = await response.json();
-
   if (!response.ok) {
-    console.log(response.statusText);
-    console.log(responseData);
+    throw new Error('로그인에 실패하였습니다.');
   }
 
   return { username };

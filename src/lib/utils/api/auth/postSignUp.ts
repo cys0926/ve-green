@@ -17,10 +17,7 @@ const postSignUp = async ({
     credentials: 'include',
     headers: {
       'Content-Type': 'multipart/form-data',
-      //samsite non
-      // 'Set-Cookie': 'HttpOnly; SameSite=None; Secure',
     },
-    // cors 해제
     mode: 'no-cors',
   });
 
