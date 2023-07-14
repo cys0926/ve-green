@@ -84,6 +84,7 @@ export type DiaryListResponse = {
 export type DiaryPostRequest = {
   title: string;
   content: string;
+  plantId: number;
 };
 
 export type DiaryPostResponse = {
