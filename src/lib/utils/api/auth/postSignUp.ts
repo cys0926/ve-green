@@ -18,6 +18,9 @@ const postSignUp = async ({
       confirmPassword,
     }),
     credentials: 'include',
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
     mode: 'no-cors',
   });
 

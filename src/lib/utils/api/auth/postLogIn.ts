@@ -1,4 +1,5 @@
 import API_BASE_URL from '@/lib/constants/api';
+
 import { User } from '@/lib/types';
 import { LoginRequest } from '@/lib/types/api';
 
@@ -15,7 +16,7 @@ const postLogIn = async ({
   });
 
   if (!response.ok) {
-    throw new Error('로그인에 실패했습니다.');
+    throw new Error('로그인에 실패하였습니다.');
   }
 
   return { username };

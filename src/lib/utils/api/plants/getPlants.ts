@@ -1,6 +1,6 @@
 import API_BASE_URL from '@/lib/constants/api';
 
-const getPlants = async (plantId: string) => {
+const getPlants = async (plantId: number) => {
   const response = await fetch(`${API_BASE_URL}/plants`, {
     method: 'GET',
     body: JSON.stringify({
