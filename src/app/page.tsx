@@ -1,9 +1,8 @@
 import React from 'react';
+import Icon from "@/components/ui/Icon";
 
 export default function Home() {
   return (
-    <div className="bg-background-500">
-        Hello, world!
-    </div>
+    <div></div>
   );
 }

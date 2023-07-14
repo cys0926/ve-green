@@ -26,7 +26,7 @@
 @layer base {
   html,
   body {
-    @apply flex w-full flex-col bg-white font-pretendard text-text-500;
+    @apply w-full font-pretendard text-text-500 max-w-2xl;
   }
 }
 
