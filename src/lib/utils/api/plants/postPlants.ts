@@ -6,7 +6,7 @@ const postPlants = async ({
   type,
   status,
 }: PlantsPostRequest): Promise<AuthResponseType> => {
-  const response = await fetch(`${API_BASE_URL}/plants/list`, {
+  const response = await fetch(`${API_BASE_URL}/plants`, {
     method: 'POST',
     body: JSON.stringify({
       name,
