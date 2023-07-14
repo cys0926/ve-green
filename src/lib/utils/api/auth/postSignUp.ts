@@ -1,11 +1,11 @@
 import API_BASE_URL from '@/lib/constants/api';
-import { SignupRequest } from '@/lib/types';
+import { AuthResponseType, SignupRequest } from '@/lib/types';
 
 const postSignUp = async ({
   username,
   password,
   confirmPassword,
-}: SignupRequest) => {
+}: SignupRequest): Promise<AuthResponseType> => {
   const response = await fetch(`${API_BASE_URL}/signup`, {
     method: 'POST',
     body: JSON.stringify({
