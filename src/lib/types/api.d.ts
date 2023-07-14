@@ -99,3 +99,11 @@ export type DiaryDeleteRequest = {
   plantId: number;
   diaryId: number;
 };
+
+export type SellingResponse = {
+  name: String;
+  price: String;
+  mall: String;
+  productLink: String;
+  imgUrl: String;
+};
