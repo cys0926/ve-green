@@ -7,8 +7,6 @@ const getRecipe = async (): Promise<RecipeResponse> => {
     headers: {
       'Content-Type': 'application/json',
     },
-    credentials: 'include',
-    mode: 'cors',
   });
 
   if (!response.ok) {
@@ -17,7 +15,7 @@ const getRecipe = async (): Promise<RecipeResponse> => {
 
   const responseData = await response.json();
 
-  return responseData;
+  return responseData[0];
 };
 
 export default getRecipe;

@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { RecipeResponse } from '@/lib/types/api';
 
 export type RecipeState = {
-  data: RecipeResponse;
+  recipe: RecipeResponse;
 };
 
 type RecipeActions = {
@@ -10,8 +10,8 @@ type RecipeActions = {
 };
 
 const useRecipeStore = create<RecipeState & RecipeActions>()((set) => ({
-  data: {} as RecipeResponse,
-  setRecipe: (recipe) => set({ recipe: recipe as RecipeResponse }),
+  recipe: {} as RecipeResponse,
+  setRecipe: (recipe) => set({ recipe }),
 }));
 
 export type RecipeStore = RecipeState & RecipeActions;

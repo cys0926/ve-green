@@ -6,9 +6,11 @@ import Link from 'next/link';
 import DiceImage from '$/images/dice.png';
 import getRecipe from '@/lib/utils/api/recipe/getRecipe';
 import { RecipeResponse } from '@/lib/types/api';
+import useRecipeStore from '@/store/recipeStore';
 
 function RandomRecipe() {
   const [data, setData] = useState<RecipeResponse>({} as RecipeResponse);
+  const setRecipe = useRecipeStore((state) => state.setRecipe);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,23 +40,28 @@ function RandomRecipe() {
     }
   };
 
+  const onLinkClick = () => {
+    setRecipe(data);
+  };
+
   return (
     <section className="mx-auto flex w-11/12 flex-col gap-y-4">
       <h2 className="text-xl font-semibold">이런 레시피는 어떠세요?</h2>
       <div className="relative flex gap-x-3">
-        <Image
-          src={data.ATT_FILE_NO_MAIN ?? '/images/noImage.png'}
-          alt="레시피 이미지 미리보기"
-          width={100}
-          height={100}
-          style={{
-            width: '30%',
-            height: 'fit-content',
-            borderRadius: '0.5rem',
-            objectFit: 'cover',
-          }}
-        />
-        <div className="flex flex-col">
+        <div className="aspect-square w-[30%] overflow-hidden rounded shadow-lg">
+          <Image
+            src={data.ATT_FILE_NO_MAIN ?? '/images/noImage.png'}
+            alt="레시피 이미지 미리보기"
+            width={100}
+            height={100}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          />
+        </div>
+        <div className="flex flex-1 flex-col">
           <h3 className="text-lg font-bold">
             {data.RCP_NM ?? '데이터를 불러오는데 실패했습니다.'}
           </h3>
@@ -64,6 +71,7 @@ function RandomRecipe() {
           <Link
             href="/recipe/1"
             className="ml-auto mt-auto text-sm text-gray-400"
+            onClick={onLinkClick}
           >
             자세히 보러 가기
           </Link>

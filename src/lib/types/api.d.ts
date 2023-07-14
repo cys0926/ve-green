@@ -32,10 +32,18 @@ export type RecipeResponse = {
 };
 
 export type RecipeIngredientResponse = {
-  openAi: {
-    RCP_NM: string;
-    RCP_PARTS_DTLS: string;
-    MANUAL: { description: string }[];
-  };
+  openAi: AIRecipe;
   savedData: RecipeResponse[];
+};
+
+export type AIRecipe = {
+  RCP_NM: string;
+  RCP_PARTS_DTLS: string;
+  MANUAL: { description: string }[];
+};
+export type YoutubeResponse = {
+  name: string;
+  link: string;
+  thumbnailUrl: string;
+  userName: string;
 };

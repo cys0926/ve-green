@@ -1,15 +1,14 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import TempImage from '$/images/tmp.png';
+import useRecipeStore from '@/store/recipeStore';
+import { useRouter } from 'next/navigation';
 
-function Page({ params }: { params: { id: string } }) {
-  const { id } = params;
-
-  console.log(id);
-
-  const temp =
-    '[1인분]조선부추 50g, 날콩가루 7g(1⅓작은술)\n' +
-    '·양념장 : 저염간장 3g(2/3작은술), 다진 대파 5g(1작은술), 다진 마늘 2g(1/2쪽), 고춧가루 2g(1/3작은술), 요리당 2g(1/3작은술), 참기름 2g(1/3작은술), 참깨 약간';
+function Page() {
+  const recipe = useRecipeStore((state) => state.recipe);
+  const router = useRouter();
 
   const tempMenual = [
     {
@@ -29,21 +28,26 @@ function Page({ params }: { params: { id: string } }) {
     },
   ];
 
+  if (!recipe) {
+    router.back();
+  }
+
   return (
     <div className="flex flex-col bg-gray-200">
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         <Image
-          src={TempImage}
+          src={recipe.ATT_FILE_NO_MAIN ?? '/images/noImage.png'}
+          width={100}
+          height={100}
           alt="음식 이미지"
           style={{ height: '100%', width: '100%', objectFit: 'cover' }}
         />
       </div>
       <div className="mt-6 border-b border-t bg-white px-6 py-4">
-        <h1 className="text-2xl font-bold">새우 사과 북어국</h1>
+        <h1 className="text-2xl font-bold">{recipe.RCP_NM}</h1>
         <h2 className="pt-2 text-lg font-bold">재료</h2>
         <p className="whitespace-pre-line pt-2">
-          {temp
-            .replaceAll(',', '\n')
+          {recipe.RCP_PARTS_DTLS.replaceAll(',', '\n')
             .replaceAll('·', '\n● ')
             .replaceAll(']', ']\n ')
             .replaceAll(':', '\n')}
@@ -52,7 +56,7 @@ function Page({ params }: { params: { id: string } }) {
       <div className="mt-6 bg-white px-6 py-4">
         <h2 className="pt-2 text-lg font-bold">레시피</h2>
         <ul className="mt-3 flex flex-col gap-y-3">
-          {tempMenual.map((item) => (
+          {recipe.MANUAL.map((item) => (
             <li className="flex gap-x-3" key={item.description}>
               <Image
                 src={item.image}

@@ -17,7 +17,6 @@ const postLogIn = async ({
       password,
     }),
     credentials: 'include',
-    mode: 'cors',
   });
 
   if (!response.ok) {
