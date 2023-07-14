@@ -1,5 +1,5 @@
 import API_BASE_URL from '@/lib/constants/api';
-import { AuthResponseType, LoginRequest } from '@/lib/types';
+import { AuthResponseType, LoginRequest } from '@/lib/types/api';
 
 const postLogIn = async ({
   username,
@@ -13,11 +13,14 @@ const postLogIn = async ({
     }),
   });
 
+  const responseData: AuthResponseType = await response.json();
+
   if (!response.ok) {
     console.log(response.statusText);
+    console.log(responseData);
   }
 
-  return response;
+  return responseData;
 };
 
 export default postLogIn;
