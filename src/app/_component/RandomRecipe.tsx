@@ -1,23 +1,52 @@
-import React from 'react';
-import Image from 'next/image';
-import TempImage from '$/images/tmp.png';
-import DiceImage from '$/images/dice.png';
-import Link from 'next/link';
+'use client';
 
-const temp =
-  '[1인분]조선부추 50g, 날콩가루 7g(1⅓작은술)\n' +
-  '·양념장 : 저염간장 3g(2/3작은술), 다진 대파 5g(1작은술), 다진 마늘 2g(1/2쪽), 고춧가루 2g(1/3작은술), 요리당 2g(1/3작은술), 참기름 2g(1/3작은술), 참깨 약간' +
-  '[1인분]조선부추 50g, 날콩가루 7g(1⅓작은술)\n' +
-  '·양념장 : 저염간장 3g(2/3작은술), 다진 대파 5g(1작은술), 다진 마늘 2g(1/2쪽), 고춧가루 2g(1/3작은술), 요리당 2g(1/3작은술), 참기름 2g(1/3작은술), 참깨 약간';
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import DiceImage from '$/images/dice.png';
+import getRecipe from '@/lib/utils/api/recipe/getRecipe';
+import { RecipeResponse } from '@/lib/types/api';
 
 function RandomRecipe() {
+  const [data, setData] = useState<RecipeResponse>({} as RecipeResponse);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const recipe = await getRecipe();
+        setData(recipe);
+      } catch (err) {
+        if (err instanceof Error) {
+          console.error(err.message);
+        }
+      }
+    };
+
+    fetchData();
+
+    return () => {};
+  }, []);
+
+  const onClick = async () => {
+    try {
+      const recipe = await getRecipe();
+      setData(recipe);
+    } catch (err) {
+      if (err instanceof Error) {
+        console.error(err.message);
+      }
+    }
+  };
+
   return (
     <section className="mx-auto flex w-11/12 flex-col gap-y-4">
       <h2 className="text-xl font-semibold">이런 레시피는 어떠세요?</h2>
       <div className="relative flex gap-x-3">
         <Image
-          src={TempImage}
+          src={data.ATT_FILE_NO_MAIN ?? '/images/noImage.png'}
           alt="레시피 이미지 미리보기"
+          width={100}
+          height={100}
           style={{
             width: '30%',
             height: 'fit-content',
@@ -26,8 +55,12 @@ function RandomRecipe() {
           }}
         />
         <div className="flex flex-col">
-          <h3 className="text-lg font-bold">사과 새우 북엇국</h3>
-          <p className="line-clamp-3 whitespace-pre-line text-sm">{temp}</p>
+          <h3 className="text-lg font-bold">
+            {data.RCP_NM ?? '데이터를 불러오는데 실패했습니다.'}
+          </h3>
+          <p className="line-clamp-3 whitespace-pre-line text-sm">
+            {data.RCP_PARTS_DTLS ?? '다시 시도해주세요.'}
+          </p>
           <Link
             href="/recipe/1"
             className="ml-auto mt-auto text-sm text-gray-400"
@@ -38,6 +71,7 @@ function RandomRecipe() {
       </div>
       <button
         type="button"
+        onClick={onClick}
         className="mx-auto flex items-center gap-x-2 rounded bg-primary-500 px-2 py-1 text-sm text-white shadow-lg"
       >
         <Image
