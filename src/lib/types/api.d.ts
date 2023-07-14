@@ -66,3 +66,36 @@ export type PlantsPatchRequest = {
   plantId: number;
   newName: string;
 };
+
+export type DiaryResponse = {
+  diaryId: number;
+  createdAt: string;
+  title: string;
+  content: string;
+  plantReply: string;
+};
+
+export type DiaryListResponse = {
+  diaryId: number;
+  createdAt: string;
+  title: string;
+};
+
+export type DiaryPostRequest = {
+  title: string;
+  content: string;
+};
+
+export type DiaryPostResponse = {
+  diaryId: number;
+};
+
+export type DiaryPatchRequest = {
+  diaryId: number;
+  content: string;
+};
+
+export type DiaryDeleteRequest = {
+  plantId: number;
+  diaryId: number;
+};
