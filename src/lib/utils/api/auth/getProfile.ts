@@ -1,7 +1,7 @@
 import API_BASE_URL from '@/lib/constants/api';
 
 const getProfile = async () => {
-  const response = await fetch(`${API_BASE_URL}/logout`, {
+  const response = await fetch(`${API_BASE_URL}/profile`, {
     method: 'GET',
   });
 
