@@ -80,3 +80,22 @@ export type DiaryListResponse = {
   createdAt: string;
   title: string;
 };
+
+export type DiaryPostRequest = {
+  title: string;
+  content: string;
+};
+
+export type DiaryPostResponse = {
+  diaryId: number;
+};
+
+export type DiaryPatchRequest = {
+  diaryId: number;
+  content: string;
+};
+
+export type DiaryDeleteRequest = {
+  plantId: number;
+  diaryId: number;
+};

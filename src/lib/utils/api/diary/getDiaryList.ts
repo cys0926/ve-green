@@ -1,7 +1,7 @@
-import { DiaryListResponse, DiaryResponse } from '@/lib/types/api';
+import { DiaryListResponse } from '@/lib/types/api';
 import API_BASE_URL from '@/lib/constants/api';
 
-const getDiary = async (): Promise<DiaryListResponse[]> => {
+const getDiaryList = async (): Promise<DiaryListResponse[]> => {
   const response = await fetch(`${API_BASE_URL}/diary/list`, {
     method: 'GET',
   });
@@ -14,4 +14,4 @@ const getDiary = async (): Promise<DiaryListResponse[]> => {
   return responseData;
 };
 
-export default getDiary;
+export default getDiaryList;
