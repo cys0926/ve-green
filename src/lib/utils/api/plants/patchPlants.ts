@@ -5,7 +5,7 @@ const patchPlants = async ({
   plantId,
   newName,
 }: PlantsPatchRequest): Promise<AuthResponseType> => {
-  const response = await fetch(`${API_BASE_URL}/plants/list`, {
+  const response = await fetch(`${API_BASE_URL}/plants`, {
     method: 'PATCH',
     body: JSON.stringify({
       plantId,
