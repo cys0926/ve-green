@@ -1,8 +1,8 @@
 import API_BASE_URL from '@/lib/constants/api';
 import { RecipeResponse } from '@/lib/types/api';
 
-const getRecipe = async (): Promise<RecipeResponse> => {
-  const response = await fetch(`${API_BASE_URL}/recipe`, {
+const getYoutubeRecipe = async () => {
+  const response = await fetch(`${API_BASE_URL}/recipe/youtube`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -19,4 +19,4 @@ const getRecipe = async (): Promise<RecipeResponse> => {
   return responseData;
 };
 
-export default getRecipe;
+export default getYoutubeRecipe;
