@@ -1,11 +1,12 @@
 import API_BASE_URL from '@/lib/constants/api';
-import { AuthResponseType, SignupRequest } from '@/lib/types';
+import { User } from '@/lib/types';
+import { SignupRequest } from '@/lib/types/api';
 
 const postSignUp = async ({
   username,
   password,
   confirmPassword,
-}: SignupRequest): Promise<AuthResponseType> => {
+}: SignupRequest): Promise<User> => {
   const response = await fetch(`${API_BASE_URL}/signup`, {
     method: 'POST',
     body: JSON.stringify({
@@ -13,13 +14,23 @@ const postSignUp = async ({
       password,
       confirmPassword,
     }),
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      //samsite non
+      // 'Set-Cookie': 'HttpOnly; SameSite=None; Secure',
+    },
+    // cors 해제
+    mode: 'no-cors',
   });
 
   if (!response.ok) {
-    console.log(response.statusText);
+    throw new Error('회원가입에 실패했습니다.');
   }
 
-  return response;
+  console.log(response);
+
+  return { username };
 };
 
 export default postSignUp;

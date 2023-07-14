@@ -1,10 +1,11 @@
 import API_BASE_URL from '@/lib/constants/api';
-import { AuthResponseType, LoginRequest } from '@/lib/types';
+import { User } from '@/lib/types';
+import { LoginRequest } from '@/lib/types/api';
 
 const postLogIn = async ({
   username,
   password,
-}: LoginRequest): Promise<AuthResponseType> => {
+}: LoginRequest): Promise<User> => {
   const response = await fetch(`${API_BASE_URL}/login`, {
     method: 'POST',
     body: JSON.stringify({
@@ -17,7 +18,7 @@ const postLogIn = async ({
     console.log(response.statusText);
   }
 
-  return response;
+  return { username };
 };
 
 export default postLogIn;
