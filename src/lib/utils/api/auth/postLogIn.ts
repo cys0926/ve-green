@@ -1,5 +1,5 @@
 import API_BASE_URL from '@/lib/constants/api';
-import { LoginRequest } from '@/lib/types/types';
+import { LoginRequest } from '@/lib/types';
 
 const postLogIn = async ({ username, password }: LoginRequest) => {
   const response = await fetch(`${API_BASE_URL}/login`, {

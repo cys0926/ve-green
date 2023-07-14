@@ -1,5 +1,5 @@
 import API_BASE_URL from '@/lib/constants/api';
-import { SignupRequest } from '@/lib/types/types';
+import { SignupRequest } from '@/lib/types';
 
 const postSignUp = async ({
   username,
