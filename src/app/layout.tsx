@@ -1,6 +1,12 @@
 import './globals.css';
 import React from 'react';
 import localFont from 'next/font/local';
+import Logo from '@/components/ui/Logo';
+import Link from 'next/link';
+import clsx from 'clsx';
+import { NAV_LINKS } from '@/lib/constants/navigation';
+import Header from '@/app/_component/Header';
+import Footer from '@/app/_component/Footer';
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -17,11 +23,21 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-
   return (
     <html lang="ko">
-      <body className={pretendard.variable}>
-        {children}
+      <body
+        className={clsx(
+          pretendard.variable,
+          'mx-auto max-h-screen w-screen max-w-xl rotate-0 border-l border-r font-pretendard text-text-500',
+        )}
+      >
+        <div className="flex h-screen flex-col">
+          <Header />
+          <div className="flex-1 overflow-y-scroll scrollbar-hide">
+            {children}
+          </div>
+          <Footer />
+        </div>
       </body>
     </html>
   );
