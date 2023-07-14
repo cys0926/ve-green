@@ -1,8 +1,13 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import tomato from '$/images/plant/cherry_tomato.png';
 
 function Page() {
+  const router = useRouter();
+
   return (
     <div className="bg-gradient-dirt flex h-full w-full flex-col items-center gap-y-12 py-12">
       <div className="mt-auto flex h-1/2 items-end">
@@ -13,7 +18,10 @@ function Page() {
             height: 'fit-content',
           }}
           alt="캐릭터"
-          className="animat scale-y-110 animate-bounce duration-700"
+          className="animat scale-y-110 animate-bounce cursor-pointer duration-700"
+          onClick={() => {
+            router.push('/diary/1');
+          }}
         />
       </div>
       <div className="flex w-11/12 items-center justify-center rounded bg-primary-400 py-4 text-center">

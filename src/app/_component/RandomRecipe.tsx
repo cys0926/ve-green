@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import TempImage from '$/images/tmp.png';
 import DiceImage from '$/images/dice.png';
+import Link from 'next/link';
 
 const temp =
   '[1인분]조선부추 50g, 날콩가루 7g(1⅓작은술)\n' +
@@ -26,13 +27,19 @@ function RandomRecipe() {
         />
         <div className="flex flex-col">
           <h3 className="text-lg font-bold">사과 새우 북엇국</h3>
-          <div className="line-clamp-3 whitespace-pre-line text-sm">{temp}</div>
-          <span className="ml-auto mt-auto text-sm text-gray-400">
+          <p className="line-clamp-3 whitespace-pre-line text-sm">{temp}</p>
+          <Link
+            href="/recipe/1"
+            className="ml-auto mt-auto text-sm text-gray-400"
+          >
             자세히 보러 가기
-          </span>
+          </Link>
         </div>
       </div>
-      <button className="mx-auto flex items-center gap-x-2 rounded bg-primary-500 px-2 py-1 text-sm text-white shadow-lg">
+      <button
+        type="button"
+        className="mx-auto flex items-center gap-x-2 rounded bg-primary-500 px-2 py-1 text-sm text-white shadow-lg"
+      >
         <Image
           src={DiceImage}
           style={{

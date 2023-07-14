@@ -15,7 +15,7 @@ export const NAV_LINKS = [
     imageSrc: ShopImage,
   },
   {
-    href: '/shop',
+    href: '/diary',
     title: '식물 일기',
     imageSrc: DiaryImage,
   },

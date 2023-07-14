@@ -10,7 +10,7 @@ function ShopList() {
         {Array(10)
           .fill(0)
           .map(() => (
-            <div className="flex cursor-pointer flex-col hover:scale-105">
+            <div className="flex cursor-pointer flex-col transition-all hover:scale-105">
               <Image src={ShopImage} alt="쇼핑몰" className="" />
               <h3 className="truncate">
                 부사 사과 늘품 경북 가정용 못난이 흠집 꿀사과 3kg 5kg 10kg

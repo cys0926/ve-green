@@ -59,6 +59,11 @@
   .animate-bounce {
     animation: bounce 1s infinite;
   }
+
+  .animate-gomugomu {
+    animation: gomugomu 1s infinite;
+    transform-origin: bottom;
+  }
 }
 
 /* key frames */
@@ -66,6 +71,18 @@
   0%,
   100% {
     transform: translateY(-25%) scaleY(1.1);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@keyframes gomugomu {
+  0%,
+  100% {
+    transform: scaleY(1.1);
     animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
   50% {
