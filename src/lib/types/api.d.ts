@@ -39,3 +39,21 @@ export type RecipeIngredientResponse = {
   };
   savedData: RecipeResponse[];
 };
+
+export type PlantsListResponse = {
+  plantId: number;
+  name: string;
+  type: string;
+  status: string;
+};
+
+export type PlantsPostRequest = {
+  name: string;
+  type: string;
+  status: string;
+};
+
+export type PlantsPatchRequest = {
+  plantId: number;
+  newName: string;
+};
