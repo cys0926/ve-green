@@ -1,6 +1,12 @@
-export type HeroIconComponent = React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<React.SVGProps<SVGSVGElement>> & {
-    title?: string;
-    titleId?: string;
-  } & React.RefAttributes<SVGSVGElement>
->;
+interface SignupRequest {
+  username: string;
+  password: string;
+  confirmPassword: string;
+}
+
+interface LoginRequest {
+  username: string;
+  password: string;
+}
+
+export { SignupRequest, LoginRequest };
