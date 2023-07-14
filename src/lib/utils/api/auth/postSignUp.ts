@@ -1,4 +1,3 @@
-import API_BASE_URL from '@/lib/constants/api';
 import { User } from '@/lib/types';
 import { SignupRequest } from '@/lib/types/api';
 
@@ -7,10 +6,10 @@ const postSignUp = async ({
   password,
   confirmPassword,
 }: SignupRequest): Promise<User> => {
-  const response = await fetch(`${API_BASE_URL}/signup`, {
+  const response = await fetch(`/api/signup`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       username,
@@ -18,12 +17,16 @@ const postSignUp = async ({
       confirmPassword,
     }),
     credentials: 'include',
-    mode: 'no-cors',
+    mode: 'cors',
   });
 
   if (!response.ok) {
     throw new Error('회원가입에 실패했습니다.');
   }
+
+  const result = await response.text();
+
+  console.log(result);
 
   return { username };
 };
