@@ -41,9 +41,28 @@ export type AIRecipe = {
   RCP_PARTS_DTLS: string;
   MANUAL: { description: string }[];
 };
+
 export type YoutubeResponse = {
   name: string;
   link: string;
   thumbnailUrl: string;
   userName: string;
+};
+
+export type PlantsListResponse = {
+  plantId: number;
+  name: string;
+  type: string;
+  status: string;
+};
+
+export type PlantsPostRequest = {
+  name: string;
+  type: string;
+  status: string;
+};
+
+export type PlantsPatchRequest = {
+  plantId: number;
+  newName: string;
 };
