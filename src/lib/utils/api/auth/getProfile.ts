@@ -4,6 +4,11 @@ import { User } from '@/lib/types';
 const getProfile = async (): Promise<User> => {
   const response = await fetch(`${API_BASE_URL}/profile`, {
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    mode: 'cors',
   });
 
   const responseData: User = await response.json();

@@ -6,6 +6,11 @@ const getRecipeIngredient = async (
 ): Promise<RecipeIngredientResponse> => {
   const response = await fetch(`${API_BASE_URL}/recipe/${ingredient}`, {
     method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+    mode: 'cors',
   });
 
   const responseData: RecipeIngredientResponse = await response.json();
