@@ -1,12 +1,18 @@
-interface SignupRequest {
+export interface SignupRequest {
   username: string;
   password: string;
   confirmPassword: string;
 }
 
-interface LoginRequest {
+export interface LoginRequest {
   username: string;
   password: string;
 }
 
-export { SignupRequest, LoginRequest };
+export type User = {
+  username: string;
+};
+
+export type AuthResponseType = {
+  msg: 'success';
+};
