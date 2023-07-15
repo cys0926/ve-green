@@ -1,18 +1,16 @@
 import API_BASE_URL from '@/lib/constants/api';
 import { PlantRequest, PlantResponse } from '@/lib/types/api';
 
-const getPlants = async ({ plantId }: PlantRequest): Promise<PlantResponse> => {
-  const response = await fetch(`${API_BASE_URL}/plants`, {
-    method: 'GET',
-    body: JSON.stringify({
-      plantId,
-    }),
-  });
+const getPlants = async ({
+  username,
+}: PlantRequest): Promise<PlantResponse[]> => {
+  const response = await fetch(`${API_BASE_URL}/plants/list/${username}`);
 
-  const responseData: PlantResponse = await response.json();
   if (!response.ok) {
     throw new Error('식물 정보를 불러오는데 실패했습니다.');
   }
+
+  const responseData = await response.json();
 
   return responseData;
 };

@@ -7,14 +7,7 @@ const postSignUp = async ({
   password,
   confirmPassword,
 }: SignupRequest): Promise<User> => {
-  console.log(
-    JSON.stringify({
-      username,
-      password,
-      confirmPassword,
-    }),
-  );
-  const response = await fetch(`${API_BASE_URL}/signup2`, {
+  const response = await fetch(`${API_BASE_URL}/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

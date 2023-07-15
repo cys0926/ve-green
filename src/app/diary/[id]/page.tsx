@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,6 +10,21 @@ import TomatoImage from '$/images/plant/tomato.png';
 const name = '토망이';
 
 function Page() {
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    const fetchPlant = async () => {
+      try {
+        const result = await get({ username: user!.username });
+        setData(result);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchDiary();
+  });
+
   return (
     <div className="flex flex-col items-center py-6">
       <h1 className="py-4 text-center text-xl font-bold">{name}의 성장일기</h1>

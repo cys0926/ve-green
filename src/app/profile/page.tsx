@@ -3,9 +3,10 @@
 import React from 'react';
 import Link from 'next/link';
 import useAuthStore from '@/store/authStore';
+import useStore from '@/lib/hooks/useStore';
 
 function Page() {
-  const user = useAuthStore((state) => state.user);
+  const user = useStore(useAuthStore, (state) => state.user);
 
   return user ? (
     <div>{user.username}님 반갑습니다!</div>

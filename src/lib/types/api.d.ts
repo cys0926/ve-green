@@ -14,7 +14,7 @@ export type AuthResponseType = {
 };
 
 export type PlantRequest = {
-  plantId: number;
+  username: string;
 };
 
 export type PlantResponse = {
@@ -59,6 +59,7 @@ export type PlantsListResponse = {
 export type PlantsPostRequest = {
   name: string;
   type: string;
+  username: string;
 };
 
 export type PlantsPatchRequest = {
