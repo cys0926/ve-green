@@ -18,7 +18,7 @@ export type PlantRequest = {
 };
 
 export type PlantResponse = {
-  plantId: number;
+  id: number;
   name: string;
   type: string;
 };
