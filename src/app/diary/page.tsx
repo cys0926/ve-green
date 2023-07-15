@@ -51,7 +51,7 @@ function Page() {
         <div className="mt-auto flex w-full flex-1 items-end justify-around">
           {plantList.map((plant, idx) => (
             <Image
-              key={plant.id}
+              key={Math.random()}
               src={PLANT_IMAGE_MAP[idx % 3]}
               style={{
                 width: '130px',
@@ -60,7 +60,7 @@ function Page() {
               alt="캐릭터"
               className="animat scale-y-110 animate-bounce cursor-pointer duration-700"
               onClick={() => {
-                router.push(`/diary/${plant.id}}`);
+                router.push(`/diary/${1}}`);
               }}
             />
           ))}

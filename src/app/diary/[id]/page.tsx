@@ -11,7 +11,7 @@ import getDiary from '@/lib/utils/api/diary/getDiary';
 
 function Page({ params }: { params: { id: string } }) {
   const { id } = params;
-  const [data, setData] = useState<DiaryResponse>({} as DiaryResponse);
+  const [, setData] = useState<DiaryResponse>({} as DiaryResponse);
 
   useEffect(() => {
     const fetchPlant = async () => {
@@ -50,7 +50,7 @@ function Page({ params }: { params: { id: string } }) {
       <ul className="flex w-full flex-col gap-y-8 px-4">
         <Link
           className="flex w-full items-baseline gap-x-3 border-b pb-1"
-          href={`/diary/${data.plant.id}/1`}
+          href={`/diary/${1}/1`}
         >
           <div className="text-xl font-bold text-primary-500"># 1</div>
           <div className="flex-1 text-xl font-semibold">
