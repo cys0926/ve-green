@@ -21,7 +21,6 @@ export type PlantResponse = {
   plantId: number;
   name: string;
   type: string;
-  status: string;
 };
 
 export type RecipeResponse = {
@@ -49,13 +48,6 @@ export type YoutubeResponse = {
   userName: string;
 };
 
-export type PlantsListResponse = {
-  plantId: number;
-  name: string;
-  type: string;
-  status: string;
-};
-
 export type PlantsPostRequest = {
   name: string;
   type: string;
@@ -68,11 +60,13 @@ export type PlantsPatchRequest = {
 };
 
 export type DiaryResponse = {
-  diaryId: number;
-  createdAt: string;
+  id: number;
   title: string;
   content: string;
-  plantReply: string;
+  imageUrl: string | null;
+  plant: PlantResponse;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type DiaryListResponse = {

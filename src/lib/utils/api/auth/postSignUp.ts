@@ -24,10 +24,6 @@ const postSignUp = async ({
     throw new Error('회원가입에 실패했습니다.');
   }
 
-  const result = await response.text();
-
-  console.log(result);
-
   return { username };
 };
 

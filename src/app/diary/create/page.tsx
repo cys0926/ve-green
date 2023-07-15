@@ -4,9 +4,9 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import postPlants from '@/lib/utils/api/plants/postPlants';
 import useAuthStore from '@/store/authStore';
-import { useRouter } from 'next/navigation';
 // import { useRouter } from 'next/navigation';
 // import { useForm } from 'react-hook-form';
 // import postPlants from '@/lib/utils/api/plants/postPlants';
@@ -38,10 +38,6 @@ function Page() {
       }
     }
   });
-
-  if (!user) {
-    router.push('/diary');
-  }
 
   return (
     <div className="h-full px-12 py-12">

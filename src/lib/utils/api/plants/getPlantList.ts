@@ -1,7 +1,7 @@
 import API_BASE_URL from '@/lib/constants/api';
 import { PlantRequest, PlantResponse } from '@/lib/types/api';
 
-const getPlants = async ({
+const getPlantList = async ({
   username,
 }: PlantRequest): Promise<PlantResponse[]> => {
   const response = await fetch(`${API_BASE_URL}/plants/list/${username}`);
@@ -15,4 +15,4 @@ const getPlants = async ({
   return responseData;
 };
 
-export default getPlants;
+export default getPlantList;

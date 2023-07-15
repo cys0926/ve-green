@@ -9,7 +9,7 @@ import tomato from '$/images/plant/tomato.png';
 import potato from '$/images/plant/potato.png';
 import tangerine from '$/images/plant/tangerine.png';
 import useAuthStore from '@/store/authStore';
-import getPlants from '@/lib/utils/api/plants/getPlants';
+import getPlantList from '@/lib/utils/api/plants/getPlantList';
 import { PlantResponse } from '@/lib/types/api';
 import useStore from '@/lib/hooks/useStore';
 
@@ -25,7 +25,7 @@ function Page() {
   useEffect(() => {
     const fetchPlants = async () => {
       try {
-        const result = await getPlants({ username: user!.username });
+        const result = await getPlantList({ username: user!.username });
         setPlantList(result);
       } catch (err) {
         console.error(err);

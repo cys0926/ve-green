@@ -31,7 +31,10 @@ function YoutubeRecipe() {
       <h2 className="text-xl font-semibold">Youtube 채식 레시피 </h2>
       <ul className="flex gap-x-4 overflow-x-scroll scrollbar-hide">
         {shuffle(data).map((value) => (
-          <li className="flex-basis flex w-[40%] flex-shrink-0 select-none flex-col gap-y-0.5">
+          <li
+            key={value.name}
+            className="flex-basis flex w-[40%] flex-shrink-0 select-none flex-col gap-y-0.5"
+          >
             <a
               href={value.link}
               target="_blank"

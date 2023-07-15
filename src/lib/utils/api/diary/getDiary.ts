@@ -2,12 +2,13 @@ import { DiaryResponse } from '@/lib/types/api';
 import API_BASE_URL from '@/lib/constants/api';
 
 const getDiary = async ({
-  diaryId,
+  plantId,
 }: {
-  diaryId: number;
+  plantId: string;
 }): Promise<DiaryResponse> => {
-  const response = await fetch(`${API_BASE_URL}/diary/${diaryId}`, {
+  const response = await fetch(`${API_BASE_URL}/diary`, {
     method: 'GET',
+    body: JSON.stringify({ plantId }),
   });
 
   if (!response.ok) {
