@@ -72,6 +72,13 @@ function Page() {
             <span className="px-4 text-warning-500">{errors.type.message}</span>
           )}
         </div>
+        <div className="flex flex-col gap-y-1">
+          <input
+            className="w-full border bg-primary-500 p-4 text-white"
+            value="추가"
+            type="submit"
+          />
+        </div>
       </form>
     </div>
   );
