@@ -7,18 +7,22 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import AIRecipe from '@/app/_component/AIRecipe';
-import TempImage from '$/images/tmp.png';
 import getRecipeIngredient from '@/lib/utils/api/recipe/getRecipeIngredient';
-import { RecipeIngredientResponse } from '@/lib/types/api';
+import { AIRecipeType, RecipeResponse } from '@/lib/types/api';
+import Link from 'next/link';
+import useRecipeStore from '@/store/recipeStore';
 
 type Inputs = {
   ingredient: string;
 };
 
 function RecipeSearch() {
-  const [recipe, setRecipe] = useState<RecipeIngredientResponse>(
-    {} as RecipeIngredientResponse,
+  const [recipeList, setRecipeList] = useState<RecipeResponse[]>(
+    [] as RecipeResponse[],
   );
+  const setRecipe = useRecipeStore((state) => state.setRecipe);
+
+  const [aiData, setAiData] = useState<AIRecipeType>({} as AIRecipeType);
 
   const { register, handleSubmit, setError } = useForm<Inputs>();
 
@@ -27,13 +31,19 @@ function RecipeSearch() {
 
     try {
       const res = await getRecipeIngredient(ingredient);
-      setRecipe(res);
+      // const aiRes = await getAIRecipe(ingredient);
+      setRecipeList(res);
+      // setAiData(aiRes);
     } catch (err) {
       if (err instanceof Error) {
         setError('root', { message: err.message });
       }
     }
   });
+
+  const onLinkClick = (data: RecipeResponse) => () => {
+    setRecipe(data);
+  };
 
   return (
     <section className="mx-auto flex w-11/12 flex-col gap-y-4">
@@ -51,18 +61,29 @@ function RecipeSearch() {
           <MagnifyingGlassIcon className="h-6 w-6" />
         </div>
       </form>
-      <AIRecipe data={recipe.openAi} />
+      <AIRecipe data={aiData} />
       <article className="flex flex-col gap-y-3 border p-4">
         <h3 className="text-lg font-semibold">레시피 검색 결과</h3>
         <div className="grid grid-cols-2 grid-rows-2 gap-x-6 gap-y-6">
-          {Array(10)
-            .fill(0)
-            .map(() => (
-              <div key={Math.random()} className="flex flex-col gap-y-1">
-                <Image src={TempImage} alt="레시피 이미지 미리보기" />
-                <h3>사과 새우 북엇국</h3>
+          {recipeList.map((data) => (
+            <Link
+              href={`/recipe/${data.RCP_NM}`}
+              onClick={onLinkClick(data)}
+              key={data.RCP_NM}
+              className="flex flex-col gap-y-1"
+            >
+              <div className="aspect-square overflow-hidden border">
+                <Image
+                  width={300}
+                  height={300}
+                  src={data.ATT_FILE_NO_MAIN ?? '/images/noImage.png'}
+                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+                  alt="레시피 이미지 미리보기"
+                />
               </div>
-            ))}
+              <h3>{data.RCP_NM ?? '데이터를 불러오는데 실패했습니다.'}</h3>
+            </Link>
+          ))}
         </div>
       </article>
     </section>

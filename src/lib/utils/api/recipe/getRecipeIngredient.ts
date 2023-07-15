@@ -1,9 +1,9 @@
 import API_BASE_URL from '@/lib/constants/api';
-import { RecipeIngredientResponse } from '@/lib/types/api';
+import { RecipeIngredientResponse, RecipeResponse } from '@/lib/types/api';
 
 const getRecipeIngredient = async (
   ingredient: string,
-): Promise<RecipeIngredientResponse> => {
+): Promise<RecipeResponse[]> => {
   const response = await fetch(`${API_BASE_URL}/recipe/${ingredient}`, {
     method: 'GET',
     headers: {

@@ -69,7 +69,7 @@ function RandomRecipe() {
             {data.RCP_PARTS_DTLS ?? '다시 시도해주세요.'}
           </p>
           <Link
-            href="/recipe/1"
+            href={`/recipe/${data.RCP_NM}`}
             className="ml-auto mt-auto text-sm text-gray-400"
             onClick={onLinkClick}
           >

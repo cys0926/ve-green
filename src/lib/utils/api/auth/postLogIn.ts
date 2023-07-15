@@ -9,6 +9,7 @@ const postLogIn = async ({
 }: LoginRequest): Promise<User> => {
   const response = await fetch(`${API_BASE_URL}/login`, {
     method: 'POST',
+    // 쿠키 세션 로그인
     headers: {
       'Content-Type': 'application/json',
     },

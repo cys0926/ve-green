@@ -5,7 +5,10 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import tomato from '$/images/plant/tomato.png';
+import potato from '$/images/plant/potato.png';
+import tangerine from '$/images/plant/tangerine.png';
 import useAuthStore from '@/store/authStore';
+import { PlusCircleIcon } from '@heroicons/react/24/outline';
 
 function Page() {
   const router = useRouter();
@@ -13,11 +16,41 @@ function Page() {
   const user = { username: '쁘띠 준경' };
 
   return (
-    <div className="bg-gradient-dirt flex h-full w-full flex-col items-center gap-y-12 py-12">
+    <div className="bg-gradient-dirt relative flex h-full w-full flex-col items-center py-12">
+      <Link
+        className="absolute right-6 top-6 flex cursor-pointer items-center gap-x-1 rounded-lg bg-primary-500 p-2 text-white"
+        href="/diary/create"
+      >
+        <PlusCircleIcon className="h-6 hover:scale-105" /> 반려 식물 만들기
+      </Link>
       {user && (
-        <div className="mt-auto flex h-1/2 items-end">
+        <div className="mt-auto flex w-full flex-1 items-end justify-around">
           <Image
             src={tomato}
+            style={{
+              width: '130px',
+              height: 'fit-content',
+            }}
+            alt="캐릭터"
+            className="animat scale-y-110 animate-bounce cursor-pointer duration-700"
+            onClick={() => {
+              router.push('/diary/1');
+            }}
+          />
+          <Image
+            src={potato}
+            style={{
+              width: '130px',
+              height: 'fit-content',
+            }}
+            alt="캐릭터"
+            className="animat scale-y-110 animate-bounce cursor-pointer duration-700"
+            onClick={() => {
+              router.push('/diary/1');
+            }}
+          />
+          <Image
+            src={tangerine}
             style={{
               width: '130px',
               height: 'fit-content',
@@ -31,7 +64,7 @@ function Page() {
         </div>
       )}
 
-      <div className="mt-auto flex w-11/12 items-center justify-center rounded bg-primary-400 py-4 text-center text-white">
+      <div className="mt-12 flex w-11/12 items-center justify-center rounded bg-primary-400 py-4 text-center text-white">
         {user ? (
           <>
             환영합니다, 주인님!

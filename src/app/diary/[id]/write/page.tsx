@@ -2,6 +2,8 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import postDiary from '@/lib/utils/api/diary/postDiary';
+import { useRouter } from 'next/navigation';
 
 type Inputs = {
   title: string;
@@ -10,6 +12,7 @@ type Inputs = {
 
 function Page({ params }: { params: { id: string } }) {
   const { id } = params;
+  const router = useRouter();
 
   const {
     register,
@@ -22,12 +25,12 @@ function Page({ params }: { params: { id: string } }) {
     const { title, content } = data;
 
     try {
-      const user = await login({
-        username,
-        password,
+      const diaryId = await postDiary({
+        title,
+        content,
+        plantId: Number(id),
       });
-      setUser({ username: user.username });
-      router.push('/');
+      router.push(`/diary/${id}/${diaryId}}`);
     } catch (err) {
       if (err instanceof Error) {
         setError('root', { message: err.message });

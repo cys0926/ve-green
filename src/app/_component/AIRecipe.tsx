@@ -1,11 +1,11 @@
 import React from 'react';
-import { AIRecipe } from '@/lib/types/api';
+import { AIRecipeType } from '@/lib/types/api';
 
-function AiRecipe({ data }: { data: AIRecipe }) {
+function AiRecipe({ data }: { data: AIRecipeType }) {
   return (
     <article className="flex flex-col gap-y-1 border p-4">
       <h3 className="text-lg font-semibold">AI 추천 레시피</h3>
-      {data ? (
+      {data?.MANUAL ? (
         <div className="flex flex-col px-2">
           <h3 className="font-semibold">{data.RCP_NM}</h3>
           <div className="whitespace-pre-line text-sm">

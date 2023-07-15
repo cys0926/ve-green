@@ -4,6 +4,7 @@ import postSignUp from '@/lib/utils/api/auth/postSignUp';
 import postLogOut from '@/lib/utils/api/auth/postLogOut';
 import postLogIn from '@/lib/utils/api/auth/postLogIn';
 import { LoginRequest, SignupRequest } from '@/lib/types/api';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
 export type AuthState = {
   user: User | null;
@@ -21,14 +22,22 @@ type AuthActions = {
   }: SignupRequest) => Promise<User>;
 };
 
-const useAuthStore = create<AuthState & AuthActions>()((set) => ({
-  user: null,
-  isLoggedIn: false,
-  setUser: (user) => set({ user }),
-  login: postLogIn,
-  logout: postLogOut,
-  signup: postSignUp,
-}));
+const useAuthStore = create<AuthState & AuthActions>()(
+  persist(
+    (set) => ({
+      user: null,
+      isLoggedIn: false,
+      setUser: (user) => set({ user }),
+      login: postLogIn,
+      logout: postLogOut,
+      signup: postSignUp,
+    }),
+    {
+      name: 'auth-storage',
+      storage: createJSONStorage(() => sessionStorage), // (optional) by default, 'localStorage' is used
+    },
+  ),
+);
 
 export type AuthStore = AuthState & AuthActions;
 

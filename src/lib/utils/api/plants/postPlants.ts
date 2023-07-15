@@ -4,14 +4,12 @@ import { AuthResponseType, PlantsPostRequest } from '@/lib/types/api';
 const postPlants = async ({
   name,
   type,
-  status,
 }: PlantsPostRequest): Promise<AuthResponseType> => {
   const response = await fetch(`${API_BASE_URL}/plants`, {
     method: 'POST',
     body: JSON.stringify({
       name,
       type,
-      status,
     }),
   });
 

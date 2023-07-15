@@ -32,11 +32,11 @@ export type RecipeResponse = {
 };
 
 export type RecipeIngredientResponse = {
-  openAi: AIRecipe;
+  openAi: AIRecipeType;
   savedData: RecipeResponse[];
 };
 
-export type AIRecipe = {
+export type AIRecipeType = {
   RCP_NM: string;
   RCP_PARTS_DTLS: string;
   MANUAL: { description: string }[];
@@ -59,7 +59,6 @@ export type PlantsListResponse = {
 export type PlantsPostRequest = {
   name: string;
   type: string;
-  status: string;
 };
 
 export type PlantsPatchRequest = {
