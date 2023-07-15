@@ -15,7 +15,7 @@ const prompt = async (ingredient: string) => {
           '*만약  레시피를 추천한다면 반드시 아래의 출력 조건을 고려해서 단 1개만 추천해줘. \n' +
           '\n' +
           '출력 조건:\n' +
-          "'RCP_NM': Dishes name\n" +
+          '"RCP_NM": Dishes name\n' +
           '요리 이름은 가능한 특이하고 시선을 끌만한 자극적인 제목으로 만들어줘\n' +
           '\n' +
           'RCP_PARTS_DTLS : cooking ingredients\n' +
@@ -26,9 +26,9 @@ const prompt = async (ingredient: string) => {
           '\n' +
           '마지막으로  답한 내용을 아래와 같은 jason형태로 작성해서 출력해줘\n' +
           '\n' +
-          "{'RCP_NM': 'Dishes name',\n" +
-          " 'RCP_PARTS_DTLS': '[1인분] cooking ingredient1:ingredient amount1, cooking ingredient2:ingredient amount2, ...',\n" +
-          " 'MANUAL': [{'description': '1.  cooking recipe step1'}, {'description': '2. cooking recipe step2'}, \n" +
+          '{"RCP_NM": "Dishes name",\n' +
+          ' "RCP_PARTS_DTLS": "[1인분] cooking ingredient1:ingredient amount1, cooking ingredient2:ingredient amount2, ...",\n' +
+          ' "MANUAL": [{"description": "1.  cooking recipe step1"}, {"description": "2. cooking recipe step2"}, \n' +
           '{...}, ...]\n' +
           '}\n' +
           '\n' +
