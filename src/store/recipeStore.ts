@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import { RecipeResponse } from '@/lib/types/api';
 import { persist } from 'zustand/middleware';
+import { RecipeResponse } from '@/lib/types/api';
 
 export type RecipeState = {
   recipe: RecipeResponse;

@@ -7,7 +7,6 @@ const deletePlants = async ({
   plantId: number;
 }): Promise<AuthResponseType> => {
   const response = await fetch(`${API_BASE_URL}/plants`, {
-
     method: 'DELETE',
     body: JSON.stringify({
       plantId,

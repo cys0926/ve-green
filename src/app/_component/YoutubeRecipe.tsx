@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import TempImage from '$/images/tmp.png';
 import { YoutubeResponse } from '@/lib/types/api';
 import getYoutubeRecipe from '@/lib/utils/api/recipe/getYoutubeRecipe';
 import shuffle from '@/lib/utils/array/shuffle';

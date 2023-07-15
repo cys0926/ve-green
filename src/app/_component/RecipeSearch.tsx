@@ -6,10 +6,10 @@ import React, { useState } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
+import Link from 'next/link';
 import AIRecipe from '@/app/_component/AIRecipe';
 import getRecipeIngredient from '@/lib/utils/api/recipe/getRecipeIngredient';
 import { AIRecipeType, RecipeResponse } from '@/lib/types/api';
-import Link from 'next/link';
 import useRecipeStore from '@/store/recipeStore';
 
 type Inputs = {

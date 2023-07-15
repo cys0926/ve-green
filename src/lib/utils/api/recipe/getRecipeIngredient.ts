@@ -1,5 +1,5 @@
 import API_BASE_URL from '@/lib/constants/api';
-import { RecipeIngredientResponse, RecipeResponse } from '@/lib/types/api';
+import { RecipeResponse } from '@/lib/types/api';
 
 const getRecipeIngredient = async (
   ingredient: string,
