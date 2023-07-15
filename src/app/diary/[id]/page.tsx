@@ -24,14 +24,12 @@ function Page({ params }: { params: { id: string } }) {
     };
 
     fetchPlant();
-  });
+  }, [id]);
 
   return (
     <div className="flex flex-col items-center py-6">
-      <h1 className="py-4 text-center text-xl font-bold">
-        {data.plant.name}의 성장일기
-      </h1>
-      <span className="mb-4">47 일 째</span>
+      <h1 className="py-4 text-center text-xl font-bold">토망이의 성장일기</h1>
+      <span className="mb-4">1 일 째</span>
       <Image
         src={TomatoImage}
         alt="토망이"
@@ -46,20 +44,17 @@ function Page({ params }: { params: { id: string } }) {
           href="/diary/1/write"
         >
           <PencilSquareIcon className="h-6 w-12 self-center justify-self-center" />
-          <div className="flex-1 text-xl font-semibold">
-            {data.plant.name} 일기 쓰기
-          </div>
+          <div className="flex-1 text-xl font-semibold">토망이 일기 쓰기</div>
         </Link>
       </div>
       <ul className="flex w-full flex-col gap-y-8 px-4">
         <Link
           className="flex w-full items-baseline gap-x-3 border-b pb-1"
-          href={`/diary/${data.plant.id}/${data.id}`}
+          href={`/diary/${data.plant.id}/1`}
         >
           <div className="text-xl font-bold text-primary-500"># 1</div>
           <div className="flex-1 text-xl font-semibold">
-            {data.plant.name}와 함께한지{' '}
-            {moment.duration(moment(data.createdAt).diff(moment())).asDays()}일
+            토망이가 싹이 났엉!
           </div>
           <div className="text-sm font-light text-secondary-500">
             {moment().format('YYYY-MM-DD')}
