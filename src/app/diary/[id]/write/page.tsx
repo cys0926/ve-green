@@ -1,9 +1,11 @@
 'use client';
 
+/* eslint-disable react/jsx-props-no-spreading */
+
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import postDiary from '@/lib/utils/api/diary/postDiary';
 import { useRouter } from 'next/navigation';
+import postDiary from '@/lib/utils/api/diary/postDiary';
 
 type Inputs = {
   title: string;

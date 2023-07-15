@@ -1,7 +1,7 @@
 import React from 'react';
-import { NAV_LINKS } from '@/lib/constants/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import NAV_LINKS from '@/lib/constants/navigation';
 
 function Footer() {
   return (

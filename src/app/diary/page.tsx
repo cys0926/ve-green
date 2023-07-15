@@ -4,16 +4,15 @@ import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { PlusCircleIcon } from '@heroicons/react/24/outline';
 import tomato from '$/images/plant/tomato.png';
 import potato from '$/images/plant/potato.png';
 import tangerine from '$/images/plant/tangerine.png';
 import useAuthStore from '@/store/authStore';
-import { PlusCircleIcon } from '@heroicons/react/24/outline';
 
 function Page() {
   const router = useRouter();
-  // const user = useAuthStore((state) => state.user);
-  const user = { username: '쁘띠 준경' };
+  const user = useAuthStore((state) => state.user);
 
   return (
     <div className="bg-gradient-dirt relative flex h-full w-full flex-col items-center py-12">

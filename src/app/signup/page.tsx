@@ -4,9 +4,9 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import useAuthStore from '@/store/authStore';
 import { SignupRequest } from '@/lib/types/api';
-import { useRouter } from 'next/navigation';
 
 function SignUp() {
   const signup = useAuthStore((state) => state.signup);

@@ -4,9 +4,9 @@
 
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/navigation';
 import { LoginRequest } from '@/lib/types/api';
 import useAuthStore from '@/store/authStore';
-import { useRouter } from 'next/navigation';
 
 function Page() {
   const login = useAuthStore((state) => state.login);

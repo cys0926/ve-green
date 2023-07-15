@@ -2,9 +2,9 @@
 
 import React from 'react';
 import Image from 'next/image';
-import TempImage from '$/images/tmp.png';
-import useRecipeStore from '@/store/recipeStore';
 import { useRouter } from 'next/navigation';
+import useRecipeStore from '@/store/recipeStore';
+import SHOP_LIST from '@/lib/constants/shop';
 
 function Page() {
   const recipe = useRecipeStore((state) => state.recipe);
@@ -15,7 +15,7 @@ function Page() {
   }
 
   return (
-    <div className="flex flex-col bg-gray-200">
+    <div className="flex flex-col bg-primary-200">
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         <Image
           src={recipe.ATT_FILE_NO_MAIN ?? '/images/noImage.png'}
@@ -46,6 +46,7 @@ function Page() {
                 height={120}
                 style={{
                   width: '30%',
+                  minWidth: '30%',
                   height: '100%',
                   objectFit: 'cover',
                   borderRadius: '4px',
@@ -59,25 +60,43 @@ function Page() {
       </div>
       <div className="mt-6 flex flex-col gap-y-2 bg-white px-6 py-4">
         <h2 className="pt-2 text-lg font-bold">요리 재료 구매하기</h2>
-        {['당근', '양파'].map((item) => (
-          <div className="flex flex-col gap-y-2" key={item}>
-            <h3 className="font-bold">{item} 구매하러 가기</h3>
-            <div className="flex w-full justify-between">
-              {Array(3)
-                .fill(0)
-                .map(() => (
-                  <div className="relative flex w-[30%] flex-col">
-                    <Image src={TempImage} style={{}} alt="조리 순서 이미지" />
-                    <h4 className="truncate">
-                      부사 사과 늘품 경북 가정용 못난이 흠집 꿀사과 3kg 5kg 10kg
-                    </h4>
-                    <span className="font-semibold">22,900원</span>
-                    <span className="text-sm text-gray-500">늘품농업회사</span>
-                  </div>
+        {['당근', '양파', '토마토'].map((item) => {
+          const filteredShop = SHOP_LIST.filter((shop) =>
+            shop.name.includes(item),
+          );
+
+          return (
+            <div className="flex flex-col gap-y-2" key={item}>
+              <h3 className="font-bold">{item} 구매하러 가기</h3>
+              <div className="flex w-full justify-between gap-x-6 overflow-x-scroll scrollbar-hide">
+                {filteredShop.map((value) => (
+                  <a
+                    href={value.productLink}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="relative flex w-[30%] transform flex-col"
+                  >
+                    <Image
+                      src={value.imgUrl}
+                      width={100}
+                      height={100}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                      }}
+                      className="transition-all duration-200 hover:scale-105"
+                      alt="조리 순서 이미지"
+                    />
+                    <h4 className="truncate py-1">{value.name}</h4>
+                    <span className="font-semibold">{value.price}</span>
+                    <span className="text-sm text-gray-500">{value.mall}</span>
+                  </a>
                 ))}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

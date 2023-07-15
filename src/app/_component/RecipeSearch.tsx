@@ -11,6 +11,7 @@ import AIRecipe from '@/app/_component/AIRecipe';
 import getRecipeIngredient from '@/lib/utils/api/recipe/getRecipeIngredient';
 import { AIRecipeType, RecipeResponse } from '@/lib/types/api';
 import useRecipeStore from '@/store/recipeStore';
+import prompt from '@/lib/utils/openAi/prompt';
 
 type Inputs = {
   ingredient: string;
@@ -20,9 +21,8 @@ function RecipeSearch() {
   const [recipeList, setRecipeList] = useState<RecipeResponse[]>(
     [] as RecipeResponse[],
   );
-  const setRecipe = useRecipeStore((state) => state.setRecipe);
-
   const [aiData, setAiData] = useState<AIRecipeType>({} as AIRecipeType);
+  const setRecipe = useRecipeStore((state) => state.setRecipe);
 
   const { register, handleSubmit, setError } = useForm<Inputs>();
 
@@ -31,9 +31,9 @@ function RecipeSearch() {
 
     try {
       const res = await getRecipeIngredient(ingredient);
-      // const aiRes = await getAIRecipe(ingredient);
       setRecipeList(res);
-      // setAiData(aiRes);
+      const aiRes = await prompt(ingredient);
+      setAiData(aiRes);
     } catch (err) {
       if (err instanceof Error) {
         setError('root', { message: err.message });

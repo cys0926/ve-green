@@ -1,4 +1,5 @@
 import openai from '@/lib/utils/openAi/config';
+import { AIRecipeType } from '@/lib/types/api';
 
 const prompt = async (ingredient: string) => {
   const completion = await openai.createChatCompletion({
@@ -43,7 +44,11 @@ const prompt = async (ingredient: string) => {
     ],
   });
 
-  return completion.data.choices[0].message;
+  const result = JSON.parse(
+    completion.data.choices[0].message?.content ?? '{}',
+  ) as AIRecipeType;
+
+  return result;
 };
 
 export default prompt;

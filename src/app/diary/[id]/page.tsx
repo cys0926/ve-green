@@ -4,12 +4,12 @@ import React from 'react';
 import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
+import { PencilSquareIcon } from '@heroicons/react/24/outline';
 import TomatoImage from '$/images/plant/tomato.png';
-import { PencilIcon, PencilSquareIcon } from '@heroicons/react/24/outline';
 
 const name = '토망이';
 
-function Page({ params }: { params: { id: string } }) {
+function Page() {
   return (
     <div className="flex flex-col items-center py-6">
       <h1 className="py-4 text-center text-xl font-bold">{name}의 성장일기</h1>

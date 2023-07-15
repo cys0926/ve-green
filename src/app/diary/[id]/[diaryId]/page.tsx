@@ -1,12 +1,13 @@
 import React from 'react';
 import Image from 'next/image';
-import TomatoImage from '$/images/plant/tomato.png';
 import moment from 'moment';
+import TomatoImage from '$/images/plant/tomato.png';
 
 const name = '토망이';
 
-function Page({ params }: { params: { id: string; diaryId: string } }) {
-  const { id, diaryId } = params;
+// { params }: { params: { id: string; diaryId: string } }
+function Page() {
+  // const { id, diaryId } = params;
 
   return (
     <div className="flex flex-col items-center px-4">

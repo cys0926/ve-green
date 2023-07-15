@@ -1,10 +1,7 @@
 import './globals.css';
 import React from 'react';
 import localFont from 'next/font/local';
-import Logo from '@/components/ui/Logo';
-import Link from 'next/link';
 import clsx from 'clsx';
-import { NAV_LINKS } from '@/lib/constants/navigation';
 import Header from '@/app/_component/Header';
 import Footer from '@/app/_component/Footer';
 

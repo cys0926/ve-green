@@ -3,9 +3,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
-import postPlants from '@/lib/utils/api/plants/postPlants';
+// import { useRouter } from 'next/navigation';
+// import { useForm } from 'react-hook-form';
+// import postPlants from '@/lib/utils/api/plants/postPlants';
 
 type Inputs = {
   name: string;
@@ -13,26 +14,26 @@ type Inputs = {
 };
 
 function Page() {
-  const router = useRouter();
+  // const router = useRouter();
 
-  const { register, handleSubmit, setError } = useForm<Inputs>();
+  const { register } = useForm<Inputs>();
 
-  const onCreatePlant = handleSubmit(async (data) => {
-    const { name, type } = data;
+  // const onCreatePlant = handleSubmit(async (data) => {
+  // const { name, type } = data;
 
-    try {
-      const user = await postPlants({ name, type });
-      router.push('/');
-    } catch (err) {
-      if (err instanceof Error) {
-        setError('root', { message: err.message });
-      }
-    }
-  });
+  // try {
+  //   const user = await postPlants({ name, type });
+  //   router.push('/');
+  // } catch (err) {
+  //   if (err instanceof Error) {
+  //     setError('root', { message: err.message });
+  //   }
+  // }
+  // });
 
   return (
     <div>
-      <form onSubmit={onCreatePlant}>
+      <form>
         <input
           className="w-full border p-4"
           {...register('name', {
