@@ -22,6 +22,7 @@ function RecipeSearch() {
     [] as RecipeResponse[],
   );
   const [aiData, setAiData] = useState<AIRecipeType>({} as AIRecipeType);
+  const [loading, setLoading] = useState(false);
   const setRecipe = useRecipeStore((state) => state.setRecipe);
 
   const { register, handleSubmit, setError } = useForm<Inputs>();
@@ -32,12 +33,15 @@ function RecipeSearch() {
     try {
       const res = await getRecipeIngredient(ingredient);
       setRecipeList(res);
+      setLoading(true);
       const aiRes = await prompt(ingredient);
       setAiData(aiRes);
     } catch (err) {
       if (err instanceof Error) {
         setError('root', { message: err.message });
       }
+    } finally {
+      setLoading(false);
     }
   });
 
@@ -58,10 +62,12 @@ function RecipeSearch() {
         />
         <div className="flex items-center">
           <input type="submit" value="" />
-          <MagnifyingGlassIcon className="h-6 w-6" />
+          <button type="submit">
+            <MagnifyingGlassIcon className="h-6 w-6" />
+          </button>
         </div>
       </form>
-      <AIRecipe data={aiData} />
+      <AIRecipe data={aiData} isLoading={loading} />
       <article className="flex flex-col gap-y-3 border p-4">
         <h3 className="text-lg font-semibold">레시피 검색 결과</h3>
         <div className="grid grid-cols-2 grid-rows-2 gap-x-6 gap-y-6">
