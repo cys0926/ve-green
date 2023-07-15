@@ -47,7 +47,7 @@ function Page() {
       >
         <PlusCircleIcon className="h-6 hover:scale-105" /> 반려 식물 만들기
       </Link>
-      {user && (
+      {user ? (
         <div className="mt-auto flex w-full flex-1 items-end justify-around">
           {plantList.map((plant, idx) => (
             <Image
@@ -64,6 +64,18 @@ function Page() {
               }}
             />
           ))}
+        </div>
+      ) : (
+        <div className="mt-auto flex w-full flex-1 items-end justify-around">
+          <Image
+            src={PLANT_IMAGE_MAP[0]}
+            style={{
+              width: '130px',
+              height: 'fit-content',
+            }}
+            alt="캐릭터"
+            className="animat scale-y-110 animate-bounce cursor-pointer duration-700"
+          />
         </div>
       )}
 
